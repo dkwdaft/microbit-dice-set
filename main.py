@@ -1,4 +1,3 @@
-choice = 0 
 def d8():
     basic.show_number(randint(1, 8))
 def d100():
@@ -13,8 +12,8 @@ def d20():
     basic.show_number(randint(1, 20))
 def d12():
     basic.show_number(randint(1, 12))
-options = [4, 6, 8, 10, 12, 20, 100]
-
-def on_forever():
+def logic():
     pass
-basic.forever(on_forever)
+    
+choice = 0
+options = [4, 6, 8, 10, 12, 20, 100]
