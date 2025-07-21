@@ -1,11 +1,17 @@
+choice = 0
+options: List[number] = []
 def print_currently_selected_option():
-    basic.show_string("D" + ("" + str(options[choice])))
+    # Displays "D" followed by the selected dice value (e.g., "D6", "D20")
+    basic.show_string("D" + str(options[choice]))
 def d8():
     basic.show_number(randint(1, 8))
 
 def on_button_pressed_a():
-    # cycle positively through the options and change the choice variable when cycling
-    pass
+    global choice
+    # Cycle positively through the options.
+    # The % operator works similarly for wrapping around the array.
+    choice = (choice + 1) % len(options)
+    print_currently_selected_option()
 input.on_button_pressed(Button.A, on_button_pressed_a)
 
 def d100():
@@ -16,27 +22,32 @@ def d4():
     basic.show_number(randint(1, 4))
 
 def on_button_pressed_b():
-    # cycle negatively through the options and change the choice variable when cycling
-    pass
+    global choice
+    # Cycle negatively through the options.
+    # Adding options.length before % ensures a positive result for negative numbers.
+    choice = (choice - 1 + len(options)) % len(options)
+    print_currently_selected_option()
 input.on_button_pressed(Button.B, on_button_pressed_b)
 
 def d10():
     basic.show_number(randint(1, 10))
 
 def on_gesture_shake():
-    if choice == 4:
+    currentDiceValue = options[choice]
+    # Get the value from the array
+    if currentDiceValue == 4:
         d4()
-    elif choice == 6:
+    elif currentDiceValue == 6:
         d6()
-    elif choice == 8:
+    elif currentDiceValue == 8:
         d8()
-    elif choice == 10:
+    elif currentDiceValue == 10:
         d10()
-    elif choice == 12:
+    elif currentDiceValue == 12:
         d12()
-    elif choice == 20:
+    elif currentDiceValue == 20:
         d20()
-    elif choice == 100:
+    elif currentDiceValue == 100:
         d100()
 input.on_gesture(Gesture.SHAKE, on_gesture_shake)
 
@@ -44,7 +55,6 @@ def d20():
     basic.show_number(randint(1, 20))
 def d12():
     basic.show_number(randint(1, 12))
-choice = 0
-options: List[number] = []
+# Initial setup when the Micro:bit starts
 options = [4, 6, 8, 10, 12, 20, 100]
 print_currently_selected_option()
