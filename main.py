@@ -1,10 +1,10 @@
 def print_currently_selected_option():
- 
     basic.show_string("D" + ("" + str(options[choice])))
 def d8():
     basic.show_number(randint(1, 8))
 
 def on_button_pressed_a():
+    # cycle positively through the options and change the choice variable when cycling 
     pass
 input.on_button_pressed(Button.A, on_button_pressed_a)
 
@@ -16,6 +16,7 @@ def d4():
     basic.show_number(randint(1, 4))
 
 def on_button_pressed_b():
+    # cycle negatively through the options and change the choice variable when cycling
     pass
 input.on_button_pressed(Button.B, on_button_pressed_b)
 
@@ -37,14 +38,13 @@ def on_gesture_shake():
         d20()
     elif choice == 100:
         d100()
-
 input.on_gesture(Gesture.SHAKE, on_gesture_shake)
 
 def d20():
     basic.show_number(randint(1, 20))
 def d12():
     basic.show_number(randint(1, 12))
+choice = 0
 options: List[number] = []
 options = [4, 6, 8, 10, 12, 20, 100]
-choice = 0
 print_currently_selected_option()
