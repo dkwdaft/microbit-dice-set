@@ -1,15 +1,6 @@
 
 > Open this page at [https://dkwdaft.github.io/microbit-dice-set/](https://dkwdaft.github.io/microbit-dice-set/)
 
-## Use as Extension
-
-This repository can be added as an **extension** in MakeCode.
-
-* open [https://makecode.microbit.org/](https://makecode.microbit.org/)
-* click on **New Project**
-* click on **Extensions** under the gearwheel menu
-* search for **https://github.com/dkwdaft/microbit-dice-set** and import
-
 ## Edit this project
 
 To edit this repository in MakeCode.
