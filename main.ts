@@ -1,15 +1,22 @@
+let choice = 0
+let options: number[] = []
+
 function print_currently_selected_option() {
-    basic.showString("D" + ("" + ("" + options[choice])))
+    // Displays "D" followed by the selected dice value (e.g., "D6", "D20")
+    basic.showString("D" + options[choice])
 }
 
 function d8() {
     basic.showNumber(randint(1, 8))
 }
 
-input.onButtonPressed(Button.A, function on_button_pressed_a() {
-    //  cycle positively through the options and change the choice variable when cycling 
-    
+input.onButtonPressed(Button.A, function () {
+    // Cycle positively through the options.
+    // The % operator works similarly for wrapping around the array.
+    choice = (choice + 1) % options.length
+    print_currently_selected_option()
 })
+
 function d100() {
     basic.showNumber(randint(1, 100))
 }
@@ -22,32 +29,36 @@ function d4() {
     basic.showNumber(randint(1, 4))
 }
 
-input.onButtonPressed(Button.B, function on_button_pressed_b() {
-    //  cycle negatively through the options and change the choice variable when cycling
-    
+input.onButtonPressed(Button.B, function () {
+    // Cycle negatively through the options.
+    // Adding options.length before % ensures a positive result for negative numbers.
+    choice = (choice - 1 + options.length) % options.length
+    print_currently_selected_option()
 })
+
 function d10() {
     basic.showNumber(randint(1, 10))
 }
 
-input.onGesture(Gesture.Shake, function on_gesture_shake() {
-    if (choice == 4) {
+input.onGesture(Gesture.Shake, function () {
+    let currentDiceValue = options[choice] // Get the value from the array
+    if (currentDiceValue == 4) {
         d4()
-    } else if (choice == 6) {
+    } else if (currentDiceValue == 6) {
         d6()
-    } else if (choice == 8) {
+    } else if (currentDiceValue == 8) {
         d8()
-    } else if (choice == 10) {
+    } else if (currentDiceValue == 10) {
         d10()
-    } else if (choice == 12) {
+    } else if (currentDiceValue == 12) {
         d12()
-    } else if (choice == 20) {
+    } else if (currentDiceValue == 20) {
         d20()
-    } else if (choice == 100) {
+    } else if (currentDiceValue == 100) {
         d100()
     }
-    
 })
+
 function d20() {
     basic.showNumber(randint(1, 20))
 }
@@ -56,7 +67,6 @@ function d12() {
     basic.showNumber(randint(1, 12))
 }
 
-let choice = 0
-let options : number[] = []
+// Initial setup when the Micro:bit starts
 options = [4, 6, 8, 10, 12, 20, 100]
 print_currently_selected_option()
