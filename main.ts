@@ -41,3 +41,4 @@ let options = [
 20,
 100
 ]
+basic.showString("D" + options[choice])
