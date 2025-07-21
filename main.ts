@@ -1,47 +1,37 @@
-let choice = 0
-let options : number[] = []
-function print_currently_selected_option() {
-    //  Displays "D" followed by the selected dice value (e.g., "D6", "D20")
+function print_currently_selected_option () {
+    // Displays "D" followed by the selected dice value (e.g., "D6", "D20")
     basic.showString("D" + ("" + options[choice]))
 }
-
-function d8() {
+function d8 () {
     basic.showNumber(randint(1, 8))
 }
-
-input.onButtonPressed(Button.A, function on_button_pressed_a() {
-    
-    //  Cycle positively through the options.
-    //  The % operator works similarly for wrapping around the array.
+input.onButtonPressed(Button.A, function () {
+    // Cycle positively through the options.
+    // The % operator works similarly for wrapping around the array.
     choice = (choice + 1) % options.length
     print_currently_selected_option()
 })
-function d100() {
+function d100 () {
     basic.showNumber(randint(1, 100))
 }
-
-function d6() {
+function d6 () {
     basic.showNumber(randint(1, 6))
 }
-
-function d4() {
+function d4 () {
     basic.showNumber(randint(1, 4))
 }
-
-input.onButtonPressed(Button.B, function on_button_pressed_b() {
-    
-    //  Cycle negatively through the options.
-    //  Adding options.length before % ensures a positive result for negative numbers.
+input.onButtonPressed(Button.B, function () {
+    // Cycle negatively through the options.
+    // Adding options.length before % ensures a positive result for negative numbers.
     choice = (choice - 1 + options.length) % options.length
     print_currently_selected_option()
 })
-function d10() {
+function d10 () {
     basic.showNumber(randint(1, 10))
 }
-
-input.onGesture(Gesture.Shake, function on_gesture_shake() {
-    let currentDiceValue = options[choice]
-    //  Get the value from the array
+input.onGesture(Gesture.Shake, function () {
+    currentDiceValue = options[choice]
+    // Get the value from the array
     if (currentDiceValue == 4) {
         d4()
     } else if (currentDiceValue == 6) {
@@ -57,16 +47,24 @@ input.onGesture(Gesture.Shake, function on_gesture_shake() {
     } else if (currentDiceValue == 100) {
         d100()
     }
-    
 })
-function d20() {
+function d20 () {
     basic.showNumber(randint(1, 20))
 }
-
-function d12() {
+function d12 () {
     basic.showNumber(randint(1, 12))
 }
-
-//  Initial setup when the Micro:bit starts
-options = [4, 6, 8, 10, 12, 20, 100]
+let currentDiceValue = 0
+let choice = 0
+let options: number[] = []
+// Initial setup when the Micro:bit starts
+options = [
+4,
+6,
+8,
+10,
+12,
+20,
+100
+]
 print_currently_selected_option()
