@@ -1,8 +1,6 @@
-choice = 0
-options: List[number] = []
 def print_currently_selected_option():
     # Displays "D" followed by the selected dice value (e.g., "D6", "D20")
-    basic.show_string("D" + str(options[choice]))
+    basic.show_string("D" + ("" + str(options[choice])))
 def d8():
     basic.show_number(randint(1, 8))
 
@@ -33,6 +31,7 @@ def d10():
     basic.show_number(randint(1, 10))
 
 def on_gesture_shake():
+    global currentDiceValue
     currentDiceValue = options[choice]
     # Get the value from the array
     if currentDiceValue == 4:
@@ -55,6 +54,9 @@ def d20():
     basic.show_number(randint(1, 20))
 def d12():
     basic.show_number(randint(1, 12))
+currentDiceValue = 0
+choice = 0
+options: List[number] = []
 # Initial setup when the Micro:bit starts
 options = [4, 6, 8, 10, 12, 20, 100]
 print_currently_selected_option()
